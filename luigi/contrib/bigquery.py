@@ -230,6 +230,8 @@ class BigQueryClient:
             }
             if dataset.location is not None:
                 body['location'] = dataset.location
+            if dataset.billing_model is not None:
+                body['billing_model'] = dataset.billing_model
             self.client.datasets().insert(projectId=dataset.project_id, body=body).execute()
         except http.HttpError as ex:
             if ex.resp.status == 409:
